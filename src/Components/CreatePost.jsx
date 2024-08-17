@@ -1,41 +1,59 @@
 import { useState } from "react";
+import useFormInfo from "./hooks";
+import { firestore } from "../firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function CreatePost() {
-  const [title, setTitle] = useState("");
-  const [subTitle, setSubTitle] = useState("");
-  const [textArea, setTextArea] = useState("");
+  const title = useFormInfo("");
+  const subTitle = useFormInfo("");
+  const textArea = useFormInfo("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("title", title, "subtitle", subTitle, "textarea", textArea);
+    try {
+      await addDoc(collection(firestore, "posts"), {
+        title: title.value,
+        subTitle: subTitle.value,
+        textArea: textArea.value,
+        createdAt: new Date(),
+      });
+      title.reset();
+      subTitle.reset();
+      textArea.reset();
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
   return (
     <div className="create-post">
       <h1>Create Post</h1>
       <form onSubmit={handleSubmit} className="create-post_from">
         <div className="title">
-          <label htmlFor="">Title</label>
+          <label htmlFor="title">Title</label>
           <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            id="title"
+            value={title.value}
+            onChange={title.onChange}
             type="text"
           />
         </div>
 
         <div className="sub-title">
-          <label htmlFor="">SubTitle</label>
+          <label htmlFor="subtitle">SubTitle</label>
           <input
-            value={subTitle}
-            onChange={(e) => setSubTitle(e.target.value)}
+            id="subtitle"
+            value={subTitle.value}
+            onChange={subTitle.onChange}
             type="text"
           />
         </div>
 
         <div className="feedback">
-          <label htmlFor="">Comment</label>
+          <label htmlFor="commnet">Comment</label>
           <textarea
-            value={textArea}
-            onChange={(e) => setTextArea(e.target.value)}
+            id="comment"
+            value={textArea.value}
+            onChange={textArea.onChange}
             rows={10}
           ></textarea>
         </div>
