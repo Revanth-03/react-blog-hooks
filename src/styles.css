@@ -2,3 +2,62 @@
   font-family: sans-serif;
   text-align: center;
 }
+ul {
+  list-style: none;
+}
+
+ul li {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #256430;
+}
+.create-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #256430;
+  margin: 0 30px;
+}
+
+.create-post_from div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 15px;
+}
+.create-post_from div label {
+  font-size: 1.3rem;
+  margin: 0 30px;
+}
+.create-post_from input {
+  padding: 9px;
+  font-size: 1.2rem;
+  outline: none;
+  border: 1px solid #256430;
+  border-radius: 3px;
+  margin: 0 30px;
+}
+.feedback textarea {
+  outline: none;
+  padding: 8px;
+  font-size: 1.2rem;
+  border: 1px solid #256430;
+  border-radius: 3px;
+  margin: 0 30px;
+  resize: none;
+}
+.create-post_from button[type="submit"] {
+  float: left;
+  outline: none;
+  padding: 5px 10px;
+  font-size: 20px;
+  border: 0px;
+  background-color: #3b9f4b;
+  border-radius: 3px;
+  color: white;
+  margin: 0 30px;
+}
