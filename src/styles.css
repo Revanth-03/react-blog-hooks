@@ -17,6 +17,10 @@ ul li a {
   color: #256430;
 }
 
+ul li:first-child a {
+  color: rgb(82, 3, 3);
+}
+
 /* Create Post styles */
 
 .create-post {
